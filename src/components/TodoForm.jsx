@@ -1,16 +1,26 @@
 import React from "react";
+import { useTodoContext } from "../context/TodoContext";
 
-export default function TodoForm({ text, onAdd, onKeyDown, onChange }) {
+export default function TodoForm() {
+  const { text, setText, handleAdd } = useTodoContext();
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") handleAdd();
+  };
+
+  const isDisabled = text.trim() === "";
+
   return (
     <>
       <input
         type="text"
         value={text}
-        onChange={onChange}
-        onKeyDown={onKeyDown}
+        onChange={(e) => setText(e.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder="할 일을 입력하세요."
       />
-      <button onClick={onAdd}>추가</button>
+      <button onClick={handleAdd} disabled={isDisabled}>
+        추가
+      </button>
     </>
   );
 }
