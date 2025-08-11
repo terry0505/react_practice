@@ -10,7 +10,7 @@ export default function TodoForm() {
   const isDisabled = text.trim() === "";
 
   return (
-    <>
+    <div className="input_wrap">
       <input
         type="text"
         value={text}
@@ -21,6 +21,6 @@ export default function TodoForm() {
       <button onClick={handleAdd} disabled={isDisabled}>
         추가
       </button>
-    </>
+    </div>
   );
 }
